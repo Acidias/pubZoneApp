@@ -1,12 +1,24 @@
-import { StatusBar } from 'expo-status-bar';
+import React, { useState } from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import AuthNavigation from './navigation/AuthNavigation';
+import AppNavigation from './navigation/AppNavigation';
+import { AuthProvider, useAuth } from './context/AuthContext';
+
 import { StyleSheet, Text, View } from 'react-native';
 
 export default function App() {
+
+  function AuthenticatedApp() {
+    const { isLoggedIn } = useAuth();
+  
+    return isLoggedIn ? <AppNavigation /> : <AuthNavigation />;
+  }
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <AuthProvider>
+      <NavigationContainer>
+        <AuthenticatedApp />
+      </NavigationContainer>
+    </AuthProvider>
   );
 }
 
