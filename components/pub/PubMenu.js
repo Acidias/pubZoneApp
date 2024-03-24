@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { View, Text, StyleSheet, TextInput, FlatList, ActivityIndicator } from 'react-native';
 import { fetchMenu } from '../../services/api/pub';
-import MenuItem from '../../components/pub/MenuItem'
+import DrinkCard from '../../components/pub/DrinkCard';
 
 const PubMenu = (pubId) => {
   const [menu, setPubs] = useState([]);
@@ -27,14 +27,18 @@ const PubMenu = (pubId) => {
     loadPubs();
 }, []);
 
+const handleDrinkSelect = (drinkId) => {
+  console.log("Drink selected: ", drinkId);
+}
+
   return (
     <View style={styles.container}>
-      <TextInput
+      {/* <TextInput
         style={styles.searchInput}
         placeholder="Search drink..."
         value={searchQuery}
         onChangeText={setSearchQuery}
-      />
+      /> */}
       {isLoading ? (
         <ActivityIndicator size="large" />
       ) : (
@@ -42,7 +46,7 @@ const PubMenu = (pubId) => {
           data={menu}
           keyExtractor={item => item._id}
           renderItem={({ item }) => (
-            <MenuItem menu={item} />
+            <DrinkCard item={item} onPress={() => handleDrinkSelect(item._id)}/>
           )}
         />
       )}
@@ -54,12 +58,12 @@ const PubMenu = (pubId) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: 50,
+    paddingTop: 5,
     paddingHorizontal: 10,
   },
   searchInput: {
     height: 40,
-    marginBottom: 20,
+    marginBottom: 10,
     borderWidth: 1,
     padding: 10,
     borderRadius: 5,

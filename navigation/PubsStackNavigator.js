@@ -1,8 +1,8 @@
 // navigation/PubsStackNavigator.js
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
-import PubsScreen from '../screens/pub/PubsScreen';
-import PubDetailsScreen from '../screens/pub/PubDetailsScreen';
+import PubsScreen from '../screens/PubsScreen';
+import PubProfile from '../screens/pub/PubProfile';
 
 const Stack = createStackNavigator();
 
@@ -10,7 +10,7 @@ const PubsStackNavigator = () => {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name="PubsList" component={PubsScreen} options={{ title: 'Pubs' }} />
-      <Stack.Screen name="PubDetailsScreen" component={PubDetailsScreen} options={({ route }) => ({ title: route.params.pub.pubName })} />
+      <Stack.Screen name="PubProfile" component={PubProfile} options={({ route }) => ({ title: route.params.pub.pubName })} />
     </Stack.Navigator>
   );
 }

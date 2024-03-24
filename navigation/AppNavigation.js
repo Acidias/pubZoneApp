@@ -1,8 +1,9 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+
 import HomeScreen from '../screens/HomeScreen';
-import PubsScreen from '../screens/pub/PubsScreen';
 import ProfileScreen from '../screens/ProfileScreen';
+
 import PubsStackNavigator from './PubsStackNavigator';
 
 const Tab = createBottomTabNavigator();

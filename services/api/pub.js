@@ -38,11 +38,11 @@ export const fetchPubs = async (searchQuery) => {
  };
 
 
- export const updateFollow = async (pubId, shouldFollow) => {
+ export const handleFavoriteApi = async (pubId) => {
      try {
        const token = await AsyncStorage.getItem('userToken');
        // Include the pubId in the URL path
-       const url = `${vars.apiUrl}/api/pubs/${pubId}/follow`;
+       const url = `${vars.apiUrl}/api/pubs/${pubId}/favorite`;
    
        const response = await axios.put(url, {}, { // Empty body if toggling, or include relevant data
          headers: {
@@ -50,7 +50,7 @@ export const fetchPubs = async (searchQuery) => {
          }
        });
    
-       console.log(response.data);
+       console.log("Response in API: ", response.data);
        return response.data;
      } catch (error) {
        console.error("Failed to update follow status:", error);
