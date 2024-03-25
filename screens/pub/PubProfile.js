@@ -3,6 +3,8 @@ import { View, Text, StyleSheet, Image, ScrollView, SafeAreaView, TouchableOpaci
 import { handleFavoriteApi, updateCheckInStatus } from '../../services/api/pub';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
+import { useCart } from '../../context/CartContext';
+
 
 import { useAuth } from '../../context/AuthContext';
 import PubMenu from '../../components/pub/PubMenu';
@@ -11,17 +13,12 @@ import PubImgSlider from '../../components/pub/PubImgSlider';
 const PubProfile = ({ route }) => {
   const { user, updateUser } = useAuth();
   const [pub, setPub] = useState(route.params.pub);
-  // console.log("Pub Profile:", pub);
-  // console.log("User:", user);
 
-  const imageUrls = [
-    'https://via.placeholder.com/450x250/ff7f7f/333333',
-    'https://via.placeholder.com/450x250/7f7fff/333333',
-    'https://via.placeholder.com/450x250/ffff7f/333333',
-    'https://via.placeholder.com/450x250/ffffff/333333',
-    'https://via.placeholder.com/450x250/777777/333333',
+  const { state } = useCart();
 
-  ];
+  useEffect(() => {
+    console.log('Current cart items:', state.items);
+  }, [state.items]);
 
   // Simulated state for active tab. Default is "Stories"
   const [activeTab, setActiveTab] = useState('People');

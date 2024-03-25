@@ -3,6 +3,8 @@ import { NavigationContainer } from '@react-navigation/native';
 import AuthNavigation from './navigation/AuthNavigation';
 import AppNavigation from './navigation/AppNavigation';
 import { AuthProvider, useAuth } from './context/AuthContext';
+import { CartProvider } from './context/CartContext';
+
 
 import { StyleSheet, Text, View } from 'react-native';
 
@@ -16,7 +18,9 @@ export default function App() {
   return (
     <AuthProvider>
       <NavigationContainer>
-        <AuthenticatedApp />
+        <CartProvider>
+          <AuthenticatedApp />
+        </CartProvider>
       </NavigationContainer>
     </AuthProvider>
   );

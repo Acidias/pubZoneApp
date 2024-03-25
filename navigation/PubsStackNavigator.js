@@ -3,6 +3,8 @@ import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import PubsScreen from '../screens/PubsScreen';
 import PubProfile from '../screens/pub/PubProfile';
+import CartScreen from '../screens/cart/CartScreen';
+
 
 const Stack = createStackNavigator();
 

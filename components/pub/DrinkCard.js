@@ -3,8 +3,26 @@ import React from 'react';
 import { Platform } from 'react-native';
 import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
 
+import { useCart } from '../../context/CartContext';
+
 
 const DrinkCard = ({ item, onPress }) => {
+  const { dispatch } = useCart();
+
+  const handleAddToCart = () => {
+    dispatch({ 
+      type: 'ADD_ITEM', 
+      payload: {
+        id: item._id, // Assuming each item has a unique _id field
+        name: item.name,
+        price: item.price,
+        quantity: 1, // Initial quantity set to 1, adjust as needed
+      }
+    });
+    console.log(item.name + " added to cart");
+  };
+
+
   return (
     <TouchableOpacity onPress={onPress} style={styles.shadowContainer}>
       <View style={styles.card}>
@@ -16,6 +34,9 @@ const DrinkCard = ({ item, onPress }) => {
           <Text style={styles.category}>{item.category}</Text>
           <Text style={styles.itemName}>{item.name}</Text>
           <Text style={styles.price}>{`$${item.price}`}</Text>
+          <TouchableOpacity onPress={handleAddToCart} style={styles.addButton}>
+            <Text style={styles.addButtonText}>+</Text>
+          </TouchableOpacity>
         </View>
       </View>
     </TouchableOpacity>
